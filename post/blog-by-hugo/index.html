@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="en-us">
+<html lang="cn">
   <head>
-    <title>用hugo &#43; github.io 搭建个人博客 // My New Hugo Site</title>
+    <title>用hugo &#43; github.io 搭建个人博客 // linjing&#39;s blog</title>
     <meta charset="utf-8" />
     <meta name="generator" content="Hugo 0.75.1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="John Doe" />
     <meta name="description" content="" />
-    <link rel="stylesheet" href="https://linj-disanbo.github.io/css/main.min.1d410c4f3be87745e986ad5991a8e587e522eb70056c9668a64694092dc27997.css" />
+    <link rel="stylesheet" href="https://linj-disanbo.github.io/css/main.min.88e7083eff65effb7485b6e6f38d10afbec25093a6fac42d734ce9024d3defbd.css" />
 
     
     <meta name="twitter:card" content="summary"/>
@@ -33,9 +33,9 @@ $ wget https://github.com/gohugoio/hugo/releases/download/v0.75.1/hugo_0.75.1_Li
   </head>
   <body>
     <header class="app-header">
-      <a href="https://linj-disanbo.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="John Doe" /></a>
-      <h1>My New Hugo Site</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <a href="https://linj-disanbo.github.io"><img class="app-header-avatar" src="/me.jpg" alt="John Doe" /></a>
+      <h1>linjing&#39;s blog</h1>
+      <p>记录, 总结, 避免遗忘</p>
       <div class="app-header-social">
         
           <a target="_blank" href="https://github.com/linj-disanbo" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
@@ -47,7 +47,39 @@ $ wget https://github.com/gohugoio/hugo/releases/download/v0.75.1/hugo_0.75.1_Li
     </header>
     <main class="app-container">
       
+    
+    <style> #toc {float: right; width:300px;  top: 0;} </style>
+    <div id="toc" class="well col-md-4 col-sm-6">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#用hugo-生成博客">用hugo 生成博客</a></li>
+    <li><a href="#主题">主题</a>
+      <ul>
+        <li><a href="#选择主题并按主题的提示进行设置">选择主题并按主题的提示进行设置</a></li>
+      </ul>
+    </li>
+    <li><a href="#创建博客">创建博客</a></li>
+    <li><a href="#启动本地服务">启动本地服务</a></li>
+    <li><a href="#和githubio-进行关联">和github.io 进行关联</a></li>
+    <li><a href="#后续">后续</a>
+      <ul>
+        <li><a href="#目录结构">目录结构</a></li>
+        <li><a href="#主题的选择和配置">主题的选择和配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#可能遇到问题">可能遇到问题</a>
+      <ul>
+        <li><a href="#版本过低可能遇到的问题">版本过低可能遇到的问题</a></li>
+        <li><a href="#未安装hugo-extended">未安装hugo extended</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
   <article class="post">
+    <div>
     <header class="post-header">
       <h1 class ="post-title">用hugo &#43; github.io 搭建个人博客</h1>
       <div class="post-meta">
@@ -64,7 +96,12 @@ $ wget https://github.com/gohugoio/hugo/releases/download/v0.75.1/hugo_0.75.1_Li
   <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
 </svg>
           2 min read
-        </div></div>
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://linj-disanbo.github.io/tags/hugo/">hugo</a><a class="tag" href="https://linj-disanbo.github.io/tags/blog/">blog</a><a class="tag" href="https://linj-disanbo.github.io/tags/github.io/">github.io</a></div></div>
     </header>
     <div class="post-content">
       <h1 id="用hugo--githubio-搭建个人博客">用hugo + github.io 搭建个人博客</h1>
@@ -134,7 +171,52 @@ $ git add .
 $ git commit  
 $ git push 
 </code></pre><h2 id="后续">后续</h2>
-<h3 id="主题的选择和配置">主题的选择和配置</h3>
+<h3 id="目录结构">目录结构</h3>
+<pre><code>.
+├── archetypes
+│   └── default.md
+├── config.toml 	# 配置文件
+├── content		
+│   └── post		# 原始的markdown格式的内容目录
+├── data
+├── layouts
+├── public		# 生成, 上传到 github.io的目录
+│   ├── 404.html
+│   ├── avatar.jpg
+│   ├── categories
+│   ├── css
+│   ├── index.html
+│   ├── index.xml
+│   ├── page
+│   ├── post
+│   ├── sitemap.xml
+│   └── tags
+├── resources
+│   └── _gen
+├── static		# 头像在这目录下
+└── themes		# 主题放到这目录下
+    └── m10c
+
+</code></pre><h3 id="主题的选择和配置">主题的选择和配置</h3>
+<p>对应主题下的配置文件, 可以对照的配置和参考主题的README介绍</p>
+<pre><code>themes/m10c/exampleSite/config.toml
+</code></pre><pre><code>baseURL = &quot;http://linj-disanbo.github.io/&quot;
+languageCode = &quot;cn&quot;
+title = &quot;linjing's blog&quot;
+theme = &quot;m10c&quot;
+
+
+[params]
+  description = &quot;记录, 总结, 避免遗忘&quot;
+  avatar = &quot;me.jpg&quot;
+
+[[params.social]]
+  name = &quot;github&quot;
+  url = &quot;https://github.com/linj-disanbo&quot;
+
+</code></pre><ol>
+<li>me.jpg 需要放到 themes/m10c/static/ 目录 (可能不同的主题位置不一样)</li>
+</ol>
 <h2 id="可能遇到问题">可能遇到问题</h2>
 <h3 id="版本过低可能遇到的问题">版本过低可能遇到的问题</h3>
 <pre><code>$ hugo new post/blog.md
@@ -144,6 +226,7 @@ ERROR: 2020/09/17 10:51:47 content.go:137: Unable to find archetypes directory f
 <pre><code>$ hugo --theme=m10c --baseUrl=&quot;https://linj-disanbo.github.io&quot; --buildDrafts
 Error: Error building site: TOCSS: failed to transform &quot;css/main.scss&quot; (text/x-scss): resource &quot;scss/linj-disanbo/linj-disanbo.github.io/css/main.scss_e86386c8bae1cd02295de71a1be078d6&quot; not found in file cache
 </code></pre>
+    </div>
     </div>
     <div class="post-footer">
       
