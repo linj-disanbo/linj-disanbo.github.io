@@ -8,16 +8,16 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 17 Sep 2020 11:33:36 +0800</lastBuildDate><atom:link href="https://linj-disanbo.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Blog</title>
-      <link>https://linj-disanbo.github.io/post/blog/</link>
+      <title>用hugo &#43; github.io 搭建个人博客</title>
+      <link>https://linj-disanbo.github.io/post/blog-by-hugo/</link>
       <pubDate>Thu, 17 Sep 2020 11:33:36 +0800</pubDate>
       
-      <guid>https://linj-disanbo.github.io/post/blog/</guid>
+      <guid>https://linj-disanbo.github.io/post/blog-by-hugo/</guid>
       <description>用hugo + github.io 搭建个人博客 安装 $ sudo aptitude install hugo $ hugo version Hugo Static Site Generator v0.16-DEV BuildDate: 2016-02-07T01:14:17+08:00 我使用的机器是 ubuntu 16, 所以下载的hugo 版本过久
 可以从github 直接下载最新的包
 网站 https://github.com/gohugoio/hugo/releases, 选择deb 安装包下载
-$ wget https://github.com/gohugoio/hugo/releases/download/v0.75.1/hugo_0.75.1_Linux-64bit.deb $ sudo dpkg -i hugo_0.75.1_Linux-64bit.deb 版本也不一定要求最新, 但后续步骤主体对版本是有要求的, 如果过低需要安装新的版本.
-版本过低可能遇到的问题 $ hugo new post/blog.md ERROR: 2020/09/17 10:51:47 hugo.go:449: Current theme does not support Hugo version 0.16. Minimum version required is 0.55 ERROR: 2020/09/17 10:51:47 content.go:137: Unable to find archetypes directory for theme : m10c in /home/linj/work/src/github.</description>
+$ wget https://github.com/gohugoio/hugo/releases/download/v0.75.1/hugo_0.75.1_Linux-64bit.deb $ wget https://github.com/gohugoio/hugo/releases/download/v0.75.1/hugo_extended_0.75.1_Linux-64bit.deb $ sudo dpkg -i hugo_0.75.1_Linux-64bit.deb $ sudo dpkg -i hugo_extended_0.75.1_Linux-64bit.deb 版本也不一定要求最新, 但后续步骤主体对版本是有要求的, 如果过低需要安装新的版本.
+用hugo 生成博客 $ hugo new site linj-blog $ ls linj-blog/ archetypes config.toml content data layouts static themes 主题 https://themes.gohugo.io/ 选择主题并按主题的提示进行设置 $ cd linj-blog/ $ git clone https://github.</description>
     </item>
     
   </channel>

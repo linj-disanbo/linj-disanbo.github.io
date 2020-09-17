@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>用hugo &#43; github.io 搭建个人博客 // My New Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://linj-disanbo.github.io/css/main.min.1d410c4f3be87745e986ad5991a8e587e522eb70056c9668a64694092dc27997.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="用hugo &#43; github.io 搭建个人博客"/>
+<meta name="twitter:description" content="用hugo &#43; github.io 搭建个人博客 安装 $ sudo aptitude install hugo $ hugo version Hugo Static Site Generator v0.16-DEV BuildDate: 2016-02-07T01:14:17&#43;08:00 我使用的机器是 ubuntu 16, 所以下载的hugo 版本过久
+可以从github 直接下载最新的包
+网站 https://github.com/gohugoio/hugo/releases, 选择deb 安装包下载
+$ wget https://github.com/gohugoio/hugo/releases/download/v0.75.1/hugo_0.75.1_Linux-64bit.deb $ wget https://github.com/gohugoio/hugo/releases/download/v0.75.1/hugo_extended_0.75.1_Linux-64bit.deb $ sudo dpkg -i hugo_0.75.1_Linux-64bit.deb $ sudo dpkg -i hugo_extended_0.75.1_Linux-64bit.deb 版本也不一定要求最新, 但后续步骤主体对版本是有要求的, 如果过低需要安装新的版本.
+用hugo 生成博客 $ hugo new site linj-blog $ ls linj-blog/ archetypes config.toml content data layouts static themes 主题 https://themes.gohugo.io/ 选择主题并按主题的提示进行设置 $ cd linj-blog/ $ git clone https://github."/>
+
+    <meta property="og:title" content="用hugo &#43; github.io 搭建个人博客" />
+<meta property="og:description" content="用hugo &#43; github.io 搭建个人博客 安装 $ sudo aptitude install hugo $ hugo version Hugo Static Site Generator v0.16-DEV BuildDate: 2016-02-07T01:14:17&#43;08:00 我使用的机器是 ubuntu 16, 所以下载的hugo 版本过久
+可以从github 直接下载最新的包
+网站 https://github.com/gohugoio/hugo/releases, 选择deb 安装包下载
+$ wget https://github.com/gohugoio/hugo/releases/download/v0.75.1/hugo_0.75.1_Linux-64bit.deb $ wget https://github.com/gohugoio/hugo/releases/download/v0.75.1/hugo_extended_0.75.1_Linux-64bit.deb $ sudo dpkg -i hugo_0.75.1_Linux-64bit.deb $ sudo dpkg -i hugo_extended_0.75.1_Linux-64bit.deb 版本也不一定要求最新, 但后续步骤主体对版本是有要求的, 如果过低需要安装新的版本.
+用hugo 生成博客 $ hugo new site linj-blog $ ls linj-blog/ archetypes config.toml content data layouts static themes 主题 https://themes.gohugo.io/ 选择主题并按主题的提示进行设置 $ cd linj-blog/ $ git clone https://github." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://linj-disanbo.github.io/post/blog-by-hugo/" />
+<meta property="article:published_time" content="2020-09-17T11:33:36+08:00" />
+<meta property="article:modified_time" content="2020-09-17T11:33:36+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://linj-disanbo.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="John Doe" /></a>
+      <h1>My New Hugo Site</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/linj-disanbo" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">用hugo &#43; github.io 搭建个人博客</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Sep 17, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <h1 id="用hugo--githubio-搭建个人博客">用hugo + github.io 搭建个人博客</h1>
+<h2 id="安装">安装</h2>
+<pre><code>$ sudo aptitude install hugo
+$ hugo version
+Hugo Static Site Generator v0.16-DEV BuildDate: 2016-02-07T01:14:17+08:00
+</code></pre><p>我使用的机器是 ubuntu 16, 所以下载的hugo 版本过久</p>
+<p>可以从github 直接下载最新的包</p>
+<p>网站 <a href="https://github.com/gohugoio/hugo/releases,">https://github.com/gohugoio/hugo/releases,</a> 选择deb 安装包下载</p>
+<pre><code>$ wget https://github.com/gohugoio/hugo/releases/download/v0.75.1/hugo_0.75.1_Linux-64bit.deb
+$ wget https://github.com/gohugoio/hugo/releases/download/v0.75.1/hugo_extended_0.75.1_Linux-64bit.deb
+$ sudo dpkg -i hugo_0.75.1_Linux-64bit.deb
+$ sudo dpkg -i hugo_extended_0.75.1_Linux-64bit.deb
+</code></pre><p>版本也不一定要求最新, 但后续步骤主体对版本是有要求的, 如果过低需要安装新的版本.</p>
+<h2 id="用hugo-生成博客">用hugo 生成博客</h2>
+<pre><code>$ hugo new site linj-blog
+
+
+$ ls linj-blog/
+archetypes  config.toml  content  data  layouts  static  themes
+
+</code></pre><h2 id="主题">主题</h2>
+<pre><code>https://themes.gohugo.io/
+</code></pre><h3 id="选择主题并按主题的提示进行设置">选择主题并按主题的提示进行设置</h3>
+<pre><code>$ cd linj-blog/
+$ git clone https://github.com/vaga/hugo-theme-m10c.git themes/m10c
+$ ls themes/
+m10c
+$ echo 'theme = &quot;m10c&quot;' &gt;&gt; config.toml
+</code></pre><h2 id="创建博客">创建博客</h2>
+<pre><code>$ hugo new post/blog.md
+$ cat content/post/blog.md 
+---
+title: &quot;Blog&quot;
+date: 2020-09-17T11:33:36+08:00
+draft: true
+---
+
+</code></pre><p>写对应的博客, 我把记录如何搭建blog作为我的第一篇博客</p>
+<pre><code>$ cat ~/blog-by-hugo.md  &gt;&gt; content/post/blog.md
+$ head content/post/blog.md 
+---
+title: &quot;Blog&quot;
+date: 2020-09-17T11:33:36+08:00
+draft: true
+---
+
+# 用hugo + github.io 搭建个人博客
+
+
+## 安装
+
+
+</code></pre><h2 id="启动本地服务">启动本地服务</h2>
+<pre><code>$ hugo server -t m10c --buildDrafts
+
+</code></pre><p>用浏览器打开看效果</p>
+<h2 id="和githubio-进行关联">和github.io 进行关联</h2>
+<p>我的github.io 仓库为 github.com:linj-disanbo/linj-disanbo.github.io, 对应的博客地址为 linj-disanbo.github.io</p>
+<p>hugo 生成的文件在 public 目录</p>
+<p>按下面的步骤将文件上传到github.io, 在浏览器打开 linj-disanbo.github.io 看效果</p>
+<pre><code>$ git clone git@github.com:linj-disanbo/linj-disanbo.github.io.git  public
+$ hugo --theme=m10c --baseUrl=&quot;https://linj-disanbo.github.io&quot; --buildDrafts
+$ cd public/
+$ git add . 
+$ git commit  
+$ git push 
+</code></pre><h2 id="后续">后续</h2>
+<h3 id="主题的选择和配置">主题的选择和配置</h3>
+<h2 id="可能遇到问题">可能遇到问题</h2>
+<h3 id="版本过低可能遇到的问题">版本过低可能遇到的问题</h3>
+<pre><code>$ hugo new post/blog.md
+ERROR: 2020/09/17 10:51:47 hugo.go:449: Current theme does not support Hugo version 0.16. Minimum version required is 0.55
+ERROR: 2020/09/17 10:51:47 content.go:137: Unable to find archetypes directory for theme : m10c in /home/linj/work/src/github.com/linj-disanbo/linj-blog/themes/m10c/archetypes
+</code></pre><h3 id="未安装hugo-extended">未安装hugo extended</h3>
+<pre><code>$ hugo --theme=m10c --baseUrl=&quot;https://linj-disanbo.github.io&quot; --buildDrafts
+Error: Error building site: TOCSS: failed to transform &quot;css/main.scss&quot; (text/x-scss): resource &quot;scss/linj-disanbo/linj-disanbo.github.io/css/main.scss_e86386c8bae1cd02295de71a1be078d6&quot; not found in file cache
+</code></pre>
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
