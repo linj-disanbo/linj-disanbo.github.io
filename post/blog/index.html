@@ -63,7 +63,7 @@ $ wget https://github.com/gohugoio/hugo/releases/download/v0.75.1/hugo_0.75.1_Li
   <title>clock</title>
   <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
 </svg>
-          1 min read
+          2 min read
         </div></div>
     </header>
     <div class="post-content">
@@ -109,7 +109,81 @@ draft: true
 </code></pre><p>写对应的博客</p>
 <pre><code>
 </code></pre><h2 id="heading"></h2>
+<h1 id="用hugo--githubio-搭建个人博客-1">用hugo + github.io 搭建个人博客</h1>
+<h2 id="安装-1">安装</h2>
+<pre><code>$ sudo aptitude install hugo
+$ hugo version
+Hugo Static Site Generator v0.16-DEV BuildDate: 2016-02-07T01:14:17+08:00
+</code></pre><p>我使用的机器是 ubuntu 16, 所以下载的hugo 版本过久</p>
+<p>可以从github 直接下载最新的包</p>
+<p>网站 <a href="https://github.com/gohugoio/hugo/releases,">https://github.com/gohugoio/hugo/releases,</a> 选择deb 安装包下载</p>
+<pre><code>$ wget https://github.com/gohugoio/hugo/releases/download/v0.75.1/hugo_0.75.1_Linux-64bit.deb
+$ wget https://github.com/gohugoio/hugo/releases/download/v0.75.1/hugo_extended_0.75.1_Linux-64bit.deb
+$ sudo dpkg -i hugo_0.75.1_Linux-64bit.deb
+$ sudo dpkg -i hugo_extended_0.75.1_Linux-64bit.deb
+</code></pre><p>版本也不一定要求最新, 但后续步骤主体对版本是有要求的, 如果过低需要安装新的版本.</p>
+<h2 id="用hugo-生成博客-1">用hugo 生成博客</h2>
+<pre><code>$ hugo new site linj-blog
 
+
+$ ls linj-blog/
+archetypes  config.toml  content  data  layouts  static  themes
+
+</code></pre><h2 id="主题-1">主题</h2>
+<pre><code>https://themes.gohugo.io/
+</code></pre><h3 id="选择主题并按主题的提示进行设置-1">选择主题并按主题的提示进行设置</h3>
+<pre><code>$ cd linj-blog/
+$ git clone https://github.com/vaga/hugo-theme-m10c.git themes/m10c
+$ ls themes/
+m10c
+$ echo 'theme = &quot;m10c&quot;' &gt;&gt; config.toml
+</code></pre><h2 id="创建博客-1">创建博客</h2>
+<pre><code>$ hugo new post/blog.md
+$ cat content/post/blog.md 
+---
+title: &quot;Blog&quot;
+date: 2020-09-17T11:33:36+08:00
+draft: true
+---
+
+</code></pre><p>写对应的博客, 我把记录如何搭建blog作为我的第一篇博客</p>
+<pre><code>$ cat ~/blog-by-hugo.md  &gt;&gt; content/post/blog.md
+$ head content/post/blog.md 
+---
+title: &quot;Blog&quot;
+date: 2020-09-17T11:33:36+08:00
+draft: true
+---
+
+# 用hugo + github.io 搭建个人博客
+
+
+## 安装
+
+
+</code></pre><h2 id="启动本地服务">启动本地服务</h2>
+<pre><code>$ hugo server -t m10c --buildDrafts
+
+</code></pre><p>用浏览器打开看效果</p>
+<h2 id="和githubio-进行关联">和github.io 进行关联</h2>
+<p>我的github.io 地址为 github.com:linj-disanbo/linj-disanbo.github.io</p>
+<p>hugo 生成的文件在 public 目录</p>
+<p>按下面的步骤将文件上传到github.io, 在浏览器打开 linj-disanbo.github.io 看效果</p>
+<pre><code>$ git clone git@github.com:linj-disanbo/linj-disanbo.github.io.git  public
+$ hugo --theme=m10c --baseUrl=&quot;https://github.com/linj-disanbo/linj-disanbo.github.io&quot; --buildDrafts
+$ cd public/
+$ git add . 
+$ git commit  
+$ git push 
+</code></pre><h2 id="可能遇到问题">可能遇到问题</h2>
+<h3 id="版本过低可能遇到的问题-1">版本过低可能遇到的问题</h3>
+<pre><code>$ hugo new post/blog.md
+ERROR: 2020/09/17 10:51:47 hugo.go:449: Current theme does not support Hugo version 0.16. Minimum version required is 0.55
+ERROR: 2020/09/17 10:51:47 content.go:137: Unable to find archetypes directory for theme : m10c in /home/linj/work/src/github.com/linj-disanbo/linj-blog/themes/m10c/archetypes
+</code></pre><h3 id="未安装hugo-extended">未安装hugo extended</h3>
+<pre><code>$ hugo --theme=m10c --baseUrl=&quot;https://github.com/linj-disanbo/linj-disanbo.github.io&quot; --buildDrafts
+Error: Error building site: TOCSS: failed to transform &quot;css/main.scss&quot; (text/x-scss): resource &quot;scss/linj-disanbo/linj-disanbo.github.io/css/main.scss_e86386c8bae1cd02295de71a1be078d6&quot; not found in file cache
+</code></pre>
     </div>
     <div class="post-footer">
       
