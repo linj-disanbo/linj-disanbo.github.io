@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="cn">
+  <head>
+    <title>系统调用 // linjing&#39;s blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://linj-disanbo.github.io/css/main.min.88e7083eff65effb7485b6e6f38d10afbec25093a6fac42d734ce9024d3defbd.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="系统调用"/>
+<meta name="twitter:description" content="没有特别说明:
+ 举例默认为linux 系统. 注重逻辑上描述, 忽略一些细节.  什么是系统调用  操作系统为用户态进程和硬件设备进行交互提供了一组接口  优点
+ 更简单. 隔离了具体硬件的细节, 不用对着硬件说明书编程. 可移植.  和函数调用的区别  从编程角度看, 很像. 都是传参和返回. 从实现上看, 区别非常大. 函数调用发生在用户态, 系统调用会发生用户态和内核态的切换.  函数调用设置ip寄存器为被调用的函数 系统调用调用 0x80 号中断    小知识: CPU的工作原理. CPU不仅看ip寄存器取下一条指令执行; CPU还会看是否有中断发生, 如果有中断请求, 会优先处理中断.
+系统调用的实现和过程 系统调用的发生
+调用 int 0x80 汇编指令 调用的系统调用编号 ax 参数通过 di, si, dx, r10, r8, r9 传递 逻辑上理解
+ 调用int 0x80 汇编指令, 先把调用的执行环境保存起来: CPU寄存器的值. 执行具体的系统调用的代码 将放回值放入 eax, 返回 调用者从 eax 读取到系统调用的返回值  栈 一个线程用两个栈: 用户栈, 内核栈."/>
+
+    <meta property="og:title" content="系统调用" />
+<meta property="og:description" content="没有特别说明:
+ 举例默认为linux 系统. 注重逻辑上描述, 忽略一些细节.  什么是系统调用  操作系统为用户态进程和硬件设备进行交互提供了一组接口  优点
+ 更简单. 隔离了具体硬件的细节, 不用对着硬件说明书编程. 可移植.  和函数调用的区别  从编程角度看, 很像. 都是传参和返回. 从实现上看, 区别非常大. 函数调用发生在用户态, 系统调用会发生用户态和内核态的切换.  函数调用设置ip寄存器为被调用的函数 系统调用调用 0x80 号中断    小知识: CPU的工作原理. CPU不仅看ip寄存器取下一条指令执行; CPU还会看是否有中断发生, 如果有中断请求, 会优先处理中断.
+系统调用的实现和过程 系统调用的发生
+调用 int 0x80 汇编指令 调用的系统调用编号 ax 参数通过 di, si, dx, r10, r8, r9 传递 逻辑上理解
+ 调用int 0x80 汇编指令, 先把调用的执行环境保存起来: CPU寄存器的值. 执行具体的系统调用的代码 将放回值放入 eax, 返回 调用者从 eax 读取到系统调用的返回值  栈 一个线程用两个栈: 用户栈, 内核栈." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://linj-disanbo.github.io/post/os/syscall/" />
+<meta property="article:published_time" content="2020-09-21T20:21:55+08:00" />
+<meta property="article:modified_time" content="2020-09-21T20:21:55+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://linj-disanbo.github.io"><img class="app-header-avatar" src="/me.jpg" alt="John Doe" /></a>
+      <h1>linjing&#39;s blog</h1>
+      <p>记录, 总结, 避免遗忘</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/linj-disanbo" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <div>
+    <header class="post-header">
+      <h1 class ="post-title">系统调用</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Sep 21, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          1 min read
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://linj-disanbo.github.io/tags/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/">系统调用</a><a class="tag" href="https://linj-disanbo.github.io/tags/%E5%86%85%E6%A0%B8%E6%A0%88/">内核栈</a><a class="tag" href="https://linj-disanbo.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></div></div>
+    </header>
+    
+    <div id="toc" class="well col-md-4 col-sm-6">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是系统调用">什么是系统调用</a></li>
+    <li><a href="#和函数调用的区别">和函数调用的区别</a></li>
+    <li><a href="#系统调用的实现和过程">系统调用的实现和过程</a></li>
+    <li><a href="#栈">栈</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="post-content">
+      <p>没有特别说明:</p>
+<ol>
+<li>举例默认为linux 系统.</li>
+<li>注重逻辑上描述, 忽略一些细节.</li>
+</ol>
+<h2 id="什么是系统调用">什么是系统调用</h2>
+<ol>
+<li>操作系统为用户态进程和硬件设备进行交互提供了一组接口</li>
+</ol>
+<p>优点</p>
+<ol>
+<li>更简单. 隔离了具体硬件的细节, 不用对着硬件说明书编程.</li>
+<li>可移植.</li>
+</ol>
+<h2 id="和函数调用的区别">和函数调用的区别</h2>
+<ol>
+<li>从编程角度看, 很像. 都是传参和返回.</li>
+<li>从实现上看, 区别非常大. 函数调用发生在用户态, 系统调用会发生用户态和内核态的切换.
+<ol>
+<li>函数调用设置ip寄存器为被调用的函数</li>
+<li>系统调用调用 0x80 号中断</li>
+</ol>
+</li>
+</ol>
+<p>小知识: CPU的工作原理. CPU不仅看ip寄存器取下一条指令执行; CPU还会看是否有中断发生, 如果有中断请求, 会优先处理中断.</p>
+<h2 id="系统调用的实现和过程">系统调用的实现和过程</h2>
+<p>系统调用的发生</p>
+<pre><code>调用 int 0x80 汇编指令
+调用的系统调用编号 ax
+参数通过 di, si, dx, r10, r8, r9 传递
+</code></pre><p>逻辑上理解</p>
+<ol>
+<li>调用int 0x80 汇编指令,</li>
+<li>先把调用的执行环境保存起来: CPU寄存器的值.</li>
+<li>执行具体的系统调用的代码</li>
+<li>将放回值放入 eax, 返回</li>
+<li>调用者从 eax 读取到系统调用的返回值</li>
+</ol>
+<h2 id="栈">栈</h2>
+<p>一个线程用两个栈: 用户栈, 内核栈. 我们一般讨论堆和栈时, 都是说的用户栈, 我们写的业务逻辑的代码一般都是运行在用户态, 用户栈是我们编程可以控制的. 当线程运行在内核态时, 使用的是内核栈, 由内核操作使用.</p>
+<p>函数调用: 在原来线程的用户栈上增加一层栈帧</p>
+<p>系统调用: 实现在内核态. 用到的是内核栈. 内核栈说明</p>
+<ol>
+<li>每个线程都有自己的内核栈</li>
+<li>在系统调用发生前, 内核栈为空</li>
+<li>在系统调用完成后, 内核栈数据失效, 也认为空</li>
+<li>系统调用实现也有调用的话, 是在内核栈上增加一层栈帧</li>
+</ol>
+
+    </div>
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

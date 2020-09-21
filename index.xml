@@ -6,7 +6,21 @@
     <description>Recent content on linjing&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Thu, 17 Sep 2020 11:33:36 +0800</lastBuildDate><atom:link href="https://linj-disanbo.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Sep 2020 20:21:55 +0800</lastBuildDate><atom:link href="https://linj-disanbo.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>系统调用</title>
+      <link>https://linj-disanbo.github.io/post/os/syscall/</link>
+      <pubDate>Mon, 21 Sep 2020 20:21:55 +0800</pubDate>
+      
+      <guid>https://linj-disanbo.github.io/post/os/syscall/</guid>
+      <description>没有特别说明:
+ 举例默认为linux 系统. 注重逻辑上描述, 忽略一些细节.  什么是系统调用  操作系统为用户态进程和硬件设备进行交互提供了一组接口  优点
+ 更简单. 隔离了具体硬件的细节, 不用对着硬件说明书编程. 可移植.  和函数调用的区别  从编程角度看, 很像. 都是传参和返回. 从实现上看, 区别非常大. 函数调用发生在用户态, 系统调用会发生用户态和内核态的切换.  函数调用设置ip寄存器为被调用的函数 系统调用调用 0x80 号中断    小知识: CPU的工作原理. CPU不仅看ip寄存器取下一条指令执行; CPU还会看是否有中断发生, 如果有中断请求, 会优先处理中断.
+系统调用的实现和过程 系统调用的发生
+调用 int 0x80 汇编指令 调用的系统调用编号 ax 参数通过 di, si, dx, r10, r8, r9 传递 逻辑上理解
+ 调用int 0x80 汇编指令, 先把调用的执行环境保存起来: CPU寄存器的值. 执行具体的系统调用的代码 将放回值放入 eax, 返回 调用者从 eax 读取到系统调用的返回值  栈 一个线程用两个栈: 用户栈, 内核栈.</description>
+    </item>
+    
     <item>
       <title>用hugo &#43; github.io 搭建个人博客</title>
       <link>https://linj-disanbo.github.io/post/blog-by-hugo/</link>
